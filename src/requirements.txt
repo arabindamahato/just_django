@@ -6,6 +6,7 @@ colorama==0.4.3
 distlib==0.3.0
 Django==2.2.7
 django-crispy-forms==1.8.1
+django-summernote==0.8.11.6
 django-tinymce==3.0.2
 Faker==3.0.0
 filelock==3.0.12

@@ -1,12 +1,17 @@
+from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
 from posts.models import Post, Category, Author
 
 # Register your models here.
-class PostAdmin(admin.ModelAdmin):
-    list_display = [
-        'title', 'overview', 'timestamp', 'comment_count', 'author', 'thumbnail', 
-    ]
+class PostAdmin(SummernoteModelAdmin):
+    # list_display = [
+    #     'title', 'overview', 'timestamp', 'comment_count', 'author', 'thumbnail', 
+    # ]
+    summernote_fields = ("content",)
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(Author)
+
+
+

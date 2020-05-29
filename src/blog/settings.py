@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'posts',
     'marketing',
 
-    'tinymce',
+    # 'tinymce',
 ]
+INSTALLED_APPS += ('django_summernote', )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +55,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 
 ROOT_URLCONF = 'blog.urls'
 
@@ -132,32 +136,29 @@ MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
 
 #TINYMCE
-
-TINYMCE_DEFAULT_CONFIG = {
-'height' : 360,
-'width' : 1120,
-'cleanup_on_startup': True,
-'custom_undo_redo_levels': 20,
-'selector': 'textarea',
-'theme': 'modern',
-'plugins': '''
-        textcolor save link image media preview codesample contextmenu
-        table code lists fullscreen  insertdatetime  nonbreaking
-        contextmenu directionality searchreplace wordcount visualblocks
-        visualchars code fullscreen autolink lists  charmap print  hr
-        anchor pagebreak
-        ''',
-'toolbar1': '''
-        fullscreen preview bold italic underline | fontselect,
-        fontsizeselect  | forecolor backcolor | alignleft alignright |
-        aligncenter alignjustify | indent outdent | bullist numlist table |
-        | link image media | codesample |
-        ''',
-'toolbar2': '''
-        visualblocks visualchars |
-        charmap hr pagebreak nonbreaking anchor |  code |
-        ''',
-'contextmenu': 'formats | link image',
-'menubar': True,
-'statusbar': True,
-}
+# TINYMCE_DEFAULT_CONFIG = {
+#     'cleanup_on_startup': True,
+#     'custom_undo_redo_levels': 20,
+#     'selector': 'textarea',
+#     'theme': 'modern',
+#     'plugins': '''
+#             textcolor save link image media preview codesample contextmenu
+#             table code lists fullscreen  insertdatetime  nonbreaking
+#             contextmenu directionality searchreplace wordcount visualblocks
+#             visualchars code fullscreen autolink lists  charmap print  hr
+#             anchor pagebreak
+#             ''',
+#     'toolbar1': '''
+#             fullscreen preview bold italic underline | fontselect,
+#             fontsizeselect  | forecolor backcolor | alignleft alignright |
+#             aligncenter alignjustify | indent outdent | bullist numlist table |
+#             | link image media | codesample |
+#             ''',
+#     'toolbar2': '''
+#             visualblocks visualchars |
+#             charmap hr pagebreak nonbreaking anchor |  code |
+#             ''',
+#     'contextmenu': 'formats | link image',
+#     'menubar': True,
+#     'statusbar': True,
+# }

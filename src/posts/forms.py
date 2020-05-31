@@ -1,5 +1,18 @@
+from django_summernote.widgets import SummernoteWidget
+
 from django import forms
 from .models import Post, Comment
+
+
+class PostCreateForm(forms.ModelForm):
+    content = forms.CharField(widget=SummernoteWidget(attrs={'width': '20%', 'height': '500px'}),)
+    class Meta:
+        model = Post
+        fields = (
+            'title', 'overview', 'content', 'thumbnail',
+             'categories', 'featured', 'previous_post', 'next_post',
+            )
+
 
 class CommentForm(forms.ModelForm):
     ''' this content is used for form in post section it gives 
@@ -15,3 +28,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content', ) 
+
+
+
+
+
+
+

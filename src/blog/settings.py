@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'posts',
     'marketing',
 
-    # 'tinymce',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 INSTALLED_APPS += ('django_summernote', )
 
 MIDDLEWARE = [

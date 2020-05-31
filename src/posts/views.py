@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from posts.models import Post
 from marketing.models import SignUp
-from posts.forms import CommentForm
+from posts.forms import CommentForm, PostCreateForm
 
 def search(request):
     queryset = Post.objects.all()
@@ -85,7 +85,17 @@ def post(request, id):
 
 
 def post_create(request):
-    pass
+    form = PostCreateForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("post_detail", kwargs={
+                'id' : form.instance.id
+                }))
+    context = {
+        'form': form
+    }
+    return render(request, "post_create.html", context)
 
 
 def post_update(request, id):

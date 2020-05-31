@@ -3,7 +3,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
-from posts.views import index, blog, post, search
+from posts.views import (
+	index, blog, post, search,
+	post_create, post_update, post_delete
+	)
 
 
 urlpatterns = [
@@ -11,7 +14,11 @@ urlpatterns = [
     path('', index),
     path('blog/', blog, name="post_list"),
     path('search/', search, name="search"),
+    path('post/create/', post_create, name="post_create"),
     path('post/<id>/', post, name="post_detail"),
+    path('post/<id>/update/', post_update, name="post_update"),
+    path('post/<id>/delete/', post_delete, name="post_delete"),
+
     path('summernote/', include('django_summernote.urls')),
 ]
 

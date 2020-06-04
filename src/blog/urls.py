@@ -11,6 +11,7 @@ from posts.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', index),
     path('blog/', blog, name="post_list"),
     path('search/', search, name="search"),

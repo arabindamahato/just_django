@@ -1,7 +1,7 @@
 from django.db.models import Count, Q 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from posts.models import Post, Author 
+from posts.models import Post, Author, PostView 
 from marketing.models import SignUp
 from posts.forms import CommentForm, PostCreateForm
 
@@ -49,9 +49,6 @@ def index(request):
 
 def blog(request):
     category_count = get_category_count()
-    # print('*'*100)
-    # print(category_count)
-    # print('*'*100)    
     most_recent = Post.objects.order_by('-timestamp')[:3]
     post_list = Post.objects.all() 
     paginator = Paginator(post_list, 4) # Paginator() accepts 2 args post_list and no's of page to show
@@ -76,6 +73,10 @@ def post(request, id):
     category_count = get_category_count()
     most_recent = Post.objects.order_by('-timestamp')[:3]
     post = get_object_or_404(Post, id=id)
+
+    if request.user.is_authenticated:
+        PostView.objects.get_or_create(user=request.user, post=post)
+        
     form = CommentForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
